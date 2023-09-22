@@ -26,21 +26,18 @@ def huvudprogram():
         kvot = typed_input.inmatning_av_flyttal("skriv in kvoten: ")
         if kvot != 1:
             break
-        else:   
-            print("Då kvot = 1 blir nämnaren odefinierad. Jämförelse kan ej göras.")
+        print("Då kvot = 1 blir nämnaren odefinierad. Jämförelse kan ej göras.")
 
     print("Antal termer i summorna:")
     while True:
         antal_termer = typed_input.inmatning_av_heltal("skriv in antal termer i följden: ")
-        if antal_termer >= 0:
+        if antal_termer > 0:
             break
-        else:
-            print("Antal termer måste vara större än noll.")
+        print("Antal termer måste vara större än noll.")
 
     aritmetrisk_summa = beräkna_aritmetrisk_summa(första_element_a1, antal_termer, differens)
     geometrisk_summa = beräkna_geometrisk_summa(första_element_g1, antal_termer, kvot)
 
-    """Jämförelse av summorna"""
     if aritmetrisk_summa < geometrisk_summa:
         print("Den geometriska summan är störst.")
     elif geometrisk_summa < aritmetrisk_summa:
