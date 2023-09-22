@@ -12,21 +12,9 @@ def beräkna_geometrisk_summa(första_element, antal_termer, kvot):
     """Beräknar den geometriska summan av två tal med en viss kvot"""
     geometrisk_summa = första_element*(((kvot**antal_termer) - 1)/(kvot - 1))
     return geometrisk_summa
-
-def jämföra_summorna(första_element_a1, första_element_g1, antal_termer, differens, kvot):
-    """Jämför den aritmetriska och geometriska summan och skriver ut vilken som är störst"""
-    aritmetrisk_summa = beräkna_aritmetrisk_summa(första_element_a1, antal_termer, differens)
-    geometrisk_summa = beräkna_geometrisk_summa(första_element_g1, antal_termer, kvot)
-
-    if aritmetrisk_summa < geometrisk_summa:
-        print("Den geometriska summan är störst.")
-    elif geometrisk_summa < aritmetrisk_summa:
-        print("Den aritmetriska summan är störst.")
-    else:
-        print("De två summorna är lika stora.")
     
 def huvudprogram():
-    """Tar all input till talföljderna från användaren"""
+    """Tar all input till talföljderna från användaren och jämför talföljderna"""
     print("Data för den aritmetriska summan:")
     första_element_a1 = typed_input.inmatning_av_flyttal("Skriv in startvärdet: ")
     differens = typed_input.inmatning_av_flyttal("skriv in differensen: ")
@@ -36,22 +24,28 @@ def huvudprogram():
 
     while True:
         kvot = typed_input.inmatning_av_flyttal("skriv in kvoten: ")
-        if kvot == 1:
-            print("Då kvot = 1 blir nämnaren odefinierad.")
-            continue
-        else:
+        if kvot != 1:
             break
+        else:   
+            print("Då kvot = 1 blir nämnaren odefinierad. Jämförelse kan ej göras.")
 
     print("Antal termer i summorna:")
     while True:
         antal_termer = typed_input.inmatning_av_heltal("skriv in antal termer i följden: ")
-        if antal_termer <= 0:
-            print ("Antal termer måste vara större än noll.")
-            continue
-        else:
+        if antal_termer >= 0:
             break
-        
+        else:
+            print("Antal termer måste vara större än noll.")
 
-    jämföra_summorna(första_element_a1, första_element_g1, antal_termer, differens, kvot)
+    aritmetrisk_summa = beräkna_aritmetrisk_summa(första_element_a1, antal_termer, differens)
+    geometrisk_summa = beräkna_geometrisk_summa(första_element_g1, antal_termer, kvot)
+
+    """Jämförelse av summorna"""
+    if aritmetrisk_summa < geometrisk_summa:
+        print("Den geometriska summan är störst.")
+    elif geometrisk_summa < aritmetrisk_summa:
+        print("Den aritmetriska summan är störst.")
+    else:
+        print("De två summorna är lika stora.")
 
 huvudprogram()
